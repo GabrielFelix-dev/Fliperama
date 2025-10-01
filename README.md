@@ -24,24 +24,33 @@ As entidades representam as tabelas do banco de dados:
 
 -   **`UserEntity`**\
     Representa os usuários cadastrados no sistema (jogadores).\
-    Possui relacionamento com `ScoreEntity`.
+    Possui relacionamento com `ScoreEntity`.\
+    Relacionamentos:
+
+    -   OneToMany com `StoreEntity` (Um usuário pode ter várias pontuações).
+    -   ManyToMany com `UserEntity` (Muitos usuários para muitos games).
 
 -   **`GameEntity`**\
     Representa os jogos disponíveis no fliperama.\
-    Relaciona-se com `ScoreEntity`.
+    Relaciona-se com `ScoreEntity`.\
+    Relacionamentos:
+
+    -   OneToOne com `ConfigEntity` (um game tem apenas uma config);
+    -   ManyToMany com `UserEntity` (Muitos games para muitos usuários).
 
 -   **`ScoreEntity`**\
     Registra as pontuações dos usuários em cada jogo.\
     Relacionamentos:
 
-    -   Muitos-para-um com `UserEntity` (um usuário pode ter várias
-        pontuações).\
-    -   Muitos-para-um com `GameEntity` (um jogo pode ter várias
+    -   ManyToOne com `UserEntity` (um usuário pode ter várias
         pontuações).
-
+        
 -   **`ConfigEntity`**\
     Armazena configurações gerais do sistema (por exemplo, parâmetros do
-    fliperama).
+    fliperama).\
+    Relacionamentos:
+
+    -   OneToOne com `GameEntity` (uma config apenas em um game).
 
 ------------------------------------------------------------------------
 
